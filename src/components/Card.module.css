@@ -10,6 +10,9 @@
 label{
       color: var(--gray-100);
 }
+label input{
+      margin-right: 0.5rem;
+}
 
 button{
       background-color: transparent;

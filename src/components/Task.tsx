@@ -20,6 +20,11 @@ export function Task() {
       setCreated(creadedSun)
   }
 
+  function completedCard(){
+    const creadedSun = completed+1
+    setCompleted(creadedSun)
+  }
+
   function deleteCard(cardToDelete: string){
       const cardsWihtoutDeleted = valueCard.filter(item => {
           return  item!== cardToDelete
@@ -47,7 +52,7 @@ export function Task() {
         <div className={styles.cardList}>
           {valueCard.length > 0 ? (
             valueCard.map((value) => {
-              return <Card key={value} onDeleteCard={deleteCard} content={value} />
+              return <Card key={value} onCompletedCard={completedCard} onDeleteCard={deleteCard} content={value} />
             })
           ) : (
             <div className={styles.task}>

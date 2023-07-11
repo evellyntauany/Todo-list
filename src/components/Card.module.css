@@ -16,4 +16,6 @@ button{
       border: none;
       cursor: pointer;
 }
-
+.checked{
+      text-decoration: line-through;
+}

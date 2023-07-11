@@ -4,10 +4,12 @@ import { Input } from './Input'
 import { Card } from './Card'
 import styles from './Task.module.css'
 
+
+
 export function Task() {
   const [created, setCreated] = useState(0)
   const [completed, setCompleted] = useState(0)
-  const [valueCard, setValueCard] = useState('');
+  const [valueCard, setValueCard] = useState([]);
 
   function handleCreateCard(event: FormEvent) {
     event.preventDefault()
@@ -18,14 +20,21 @@ export function Task() {
       setCreated(creadedSun)
   }
 
+  function deleteCard(cardToDelete: string){
+      const cardsWihtoutDeleted = valueCard.filter(item => {
+          return  item!== cardToDelete
+      })
+      setValueCard(cardsWihtoutDeleted)
+  }
+
   return (
     <>
-      <form onSubmit={handleCreateCard} className="container">
+      <form onSubmit={handleCreateCard} className={styles.container}>
         <Input name="inputText" placeholder="Adicione uma nova tarefa" />
         <Button type="submit" label="Criar" />
       </form>
 
-      <aside className={styles.container}>
+      <aside className={styles.asideContainer} >
         <div className={styles.infos}>
           <p>
             Tarefas criadas <strong>{created}</strong>
@@ -38,7 +47,7 @@ export function Task() {
         <div className={styles.cardList}>
           {valueCard.length > 0 ? (
             valueCard.map((value) => {
-              return <Card content={value} />
+              return <Card key={value} onDeleteCard={deleteCard} content={value} />
             })
           ) : (
             <div className={styles.task}>

@@ -1,6 +1,19 @@
 .container{
+      margin-top: 1.5rem;
       border-radius: 12px;
       background-color: var(--gray-500);
       padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid var(--gray-400);
+}
+label{
+      color: var(--gray-100);
+}
+
+button{
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
 }
 

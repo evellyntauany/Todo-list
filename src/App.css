@@ -1,11 +1,12 @@
-.container {
-    display: flex;
-    justify-content: center;
-    top: -1.5rem;
-    position: relative;
-    gap: 0.5rem;
-}
+
 
 .containerTask{
       max-width: 200px;
+}
+
+.containerNav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

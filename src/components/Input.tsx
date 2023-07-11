@@ -10,6 +10,6 @@ interface PropsIputed{
 
 export function Input({placeholder,name}:PropsIputed){
       return(
-        <input placeholder={placeholder} name={name} className={styles.inputStyles}/>
+        <input id="inputText" placeholder={placeholder} name={name} className={styles.inputStyles}/>
       )
 }

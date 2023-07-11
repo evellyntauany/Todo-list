@@ -1,14 +1,27 @@
-.container{
+.container {
       display: flex;
-      flex-direction: column;
-}
+      justify-content: center;
+      top: -1.5rem;
+      position: relative;
+      gap: 0.5rem;
+      width: 100%;
+  }
 p:nth-child(1){
       font-weight: bold;
       color: var(--blue);
 }
+p:nth-child(2){
+      font-weight: bold;
+      color: var(--purple);
+}
+
+.asideContainer{
+      width: 50%;
+}
 .infos{
       display: flex;
       justify-content: space-between;
+      margin-bottom: 1rem;
 }
 .task{
       display: flex;
@@ -19,4 +32,12 @@ p:nth-child(1){
       border-radius: 10px;
       height: 50vh;
       font-size: 1.2rem;
+}
+
+.infos p span, .infos p strong{
+      padding: 0.1rem 0.6rem;
+      background-color: var(--gray-400);
+      border-radius: 1rem;
+      font-size: 0.8rem;
+      color: var(--gray-100);
 }

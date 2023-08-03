@@ -1,24 +1,29 @@
-import { FormEvent, useState } from 'react'
+import {  useState } from 'react'
 import { Button } from './Button'
 import { Input } from './Input'
 import { Card } from './Card'
 import styles from './Task.module.css'
-
+import Clipboard from '../assets/Clipboard.svg';
 
 
 export function Task() {
   const [created, setCreated] = useState(0)
   const [completed, setCompleted] = useState(0)
   const [valueCard, setValueCard] = useState([]);
+  const [inputText, setInputText] = useState('');
 
-  function handleCreateCard(event: FormEvent) {
+  const handleCreateCard = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const newText = event.target.inputText.value
-    setValueCard([...valueCard, newText])
+    setValueCard([...valueCard, inputText]);
+    setInputText('');
 
     const creadedSun = created+1
       setCreated(creadedSun)
   }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setInputText(event.target.value)
+  };
 
   function completedCard(){
     const creadedSun = completed+1
@@ -35,7 +40,7 @@ export function Task() {
   return (
     <>
       <form onSubmit={handleCreateCard} className={styles.container}>
-        <Input name="inputText" placeholder="Adicione uma nova tarefa" />
+        <Input onChange={handleChange} value={inputText} placeholder="Adicione uma nova tarefa" />
         <Button type="submit" label="Criar" />
       </form>
 
@@ -56,6 +61,7 @@ export function Task() {
             })
           ) : (
             <div className={styles.task}>
+              <img src={Clipboard}/>
               <strong>Voce ainda nao tem tarefas cadastradas</strong>
               <p>Crie tarefas e organize seus itens a fazer</p>
             </div>

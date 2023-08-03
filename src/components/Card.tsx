@@ -31,7 +31,7 @@ export function Card({ content, onDeleteCard, onCompletedCard }: PropsCard) {
         {content}
       </label>
       <button onClick={handleDeleteCard}>
-        <Trash size={20} />
+        <Trash className={styles.icon} size={20} />
       </button>
     </div>
   )

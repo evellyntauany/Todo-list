@@ -1,41 +1,44 @@
-import {  useState } from 'react'
+import {  useContext, useEffect, useState } from 'react'
 import { Button } from './Button'
 import { Input } from './Input'
 import { Card } from './Card'
 import styles from './Task.module.css'
 import Clipboard from '../assets/Clipboard.svg';
+import { CardContext } from '../contexts/card.context'
+
 
 
 export function Task() {
+  const {
+    completed,
+  } = useContext(CardContext)
+
+
   const [created, setCreated] = useState(0)
-  const [completed, setCompleted] = useState(0)
-  const [valueCard, setValueCard] = useState([]);
+
+  const [cards, setValueCards] = useState<string[]>([]);
   const [inputText, setInputText] = useState('');
+
+  const creadedSun = created
 
   const handleCreateCard = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setValueCard([...valueCard, inputText]);
+    if (inputText.trim() === '') return;
+    setValueCards([...cards, inputText]);
     setInputText('');
 
-    const creadedSun = created+1
-      setCreated(creadedSun)
+
+    setCreated(creadedSun+1)
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setInputText(event.target.value)
   };
 
-  function completedCard(){
-    const creadedSun = completed+1
-    setCompleted(creadedSun)
-  }
 
-  function deleteCard(cardToDelete: string){
-      const cardsWihtoutDeleted = valueCard.filter(item => {
-          return  item!== cardToDelete
-      })
-      setValueCard(cardsWihtoutDeleted)
-  }
+ 
+
+
 
   return (
     <>
@@ -55,9 +58,9 @@ export function Task() {
         </div>
 
         <div className={styles.cardList}>
-          {valueCard.length > 0 ? (
-            valueCard.map((value) => {
-              return <Card key={value} onCompletedCard={completedCard} onDeleteCard={deleteCard} content={value} />
+          {cards.length > 0 ? (
+            cards.map((value) => {
+              return <Card key={value}  content={value} />
             })
           ) : (
             <div className={styles.task}>

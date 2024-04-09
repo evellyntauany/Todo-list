@@ -3,10 +3,10 @@ import styles from './Input.module.css'
 
 
 interface InputProps {
-      value: string;
-      onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-      placeholder?: string;
-    }
+    value: string;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
+  }
 
 
 export function Input({value, onChange, placeholder }:InputProps){

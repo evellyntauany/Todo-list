@@ -11,38 +11,16 @@ import { CardContext } from '../contexts/card.context'
 export function Task() {
   const {
     completed,
+    createdCard,
+    cards,
+    created,
+    inputText,
+    handleChange,
   } = useContext(CardContext)
-
-
-  const [created, setCreated] = useState(0)
-
-  const [cards, setValueCards] = useState<string[]>([]);
-  const [inputText, setInputText] = useState('');
-
-  const creadedSun = created
-
-  const handleCreateCard = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (inputText.trim() === '') return;
-    setValueCards([...cards, inputText]);
-    setInputText('');
-
-
-    setCreated(creadedSun+1)
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setInputText(event.target.value)
-  };
-
-
- 
-
-
 
   return (
     <>
-      <form onSubmit={handleCreateCard} className={styles.container}>
+      <form onSubmit={createdCard} className={styles.container}>
         <Input onChange={handleChange} value={inputText} placeholder="Adicione uma nova tarefa" />
         <Button type="submit" label="Criar" />
       </form>
@@ -59,8 +37,8 @@ export function Task() {
 
         <div className={styles.cardList}>
           {cards.length > 0 ? (
-            cards.map((value) => {
-              return <Card key={value}  content={value} />
+            cards.map((card,index) => {
+              return <Card key={`card-${index}`} id={card.id} value={card.value}  />
             })
           ) : (
             <div className={styles.task}>
